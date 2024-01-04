@@ -9,7 +9,6 @@ use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
-use yii2mod\behaviors\PurifyBehavior;
 use yii2mod\comments\traits\ModuleTrait;
 use yii2mod\moderation\enums\Status;
 use yii2mod\moderation\ModerationBehavior;
@@ -110,17 +109,6 @@ class CommentModel extends ActiveRecord
                 'class' => TimestampBehavior::class,
                 'createdAtAttribute' => 'createdAt',
                 'updatedAtAttribute' => 'updatedAt',
-            ],
-            'purify' => [
-                'class' => PurifyBehavior::class,
-                'attributes' => ['content'],
-                'config' => [
-                    'HTML.SafeIframe' => true,
-                    'URI.SafeIframeRegexp' => '%^(https?:)?//(www\.youtube(?:-nocookie)?\.com/embed/|player\.vimeo\.com/video/)%',
-                    'AutoFormat.Linkify' => true,
-                    'HTML.TargetBlank' => true,
-                    'HTML.Allowed' => 'a[href], iframe[src|width|height|frameborder], img[src]',
-                ],
             ],
             'adjacencyList' => [
                 'class' => AdjacencyListBehavior::class,
